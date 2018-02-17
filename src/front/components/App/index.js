@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
 import {root} from 'baobab-react/higher-order';
-import cx from 'classnames';
-import {Classes} from '@blueprintjs/core';
 
 import TopPanel from '../TopPanel';
 import LeftPanel from '../LeftPanel';
@@ -13,7 +11,7 @@ import stylesheet from './App.css';
 
 class App extends Component {
     render() {
-        return <div className={cx(Classes.DARK, stylesheet.root)}>
+        return <div className={stylesheet.root}>
             <TopPanel/>
 
             <div className={stylesheet.main}>

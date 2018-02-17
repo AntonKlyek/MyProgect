@@ -3,9 +3,12 @@ import PropTypes from 'prop-types';
 import {branch} from 'baobab-react/higher-order';
 import {Menu, MenuItem} from '@blueprintjs/core';
 import _ from 'lodash';
+import cx from 'classnames';
 
 import {branches} from '../../data';
 import {selectExtension} from '../../actions';
+
+import stylesheet from './LeftPanel.css';
 
 class LeftPanel extends Component {
     handleSelectExtension(index) {
@@ -16,7 +19,7 @@ class LeftPanel extends Component {
     render() {
         const {className, extensions} = this.props;
 
-        return <div className={className}>
+        return <div className={cx(stylesheet.root, className)}>
             <Menu>
                 {_.map(extensions, ({title, icon}, index) => <MenuItem
                     key={index}
