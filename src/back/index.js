@@ -13,6 +13,20 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+const css = `
+<style>
+    #myChart {
+        display: none
+    }
+
+    #calc {
+        font-family: sans-serif;
+        font-size: 14px;
+        color: black;
+    }
+</style>
+`;
+
 app.get('/', function(req, res) {
     axios.get(ORIGIN).then(response => {
         let $ = cheerio.load(response.data);
@@ -20,7 +34,7 @@ app.get('/', function(req, res) {
         const head = $('head').html();
         const center = $('#center_news').html();
 
-        const html = `<html>${head}<body>${center}</body></html>`;
+        const html = `<html>${head}${css}<body>${center}</body></html>`;
 
         res.send(html);
     });
@@ -30,6 +44,11 @@ app.all(/.*/, function(req, res) {
     const {url, method} = req;
 
     if (_.endsWith(url, '.png')) {
+        res.send('');
+        return;
+    }
+
+    if (_.endsWith(url, '/FusionCharts.js')) {
         res.send('');
         return;
     }
